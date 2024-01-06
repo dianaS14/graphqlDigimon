@@ -2,14 +2,14 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   
-  scalar Cursor
+
 
   type PageInfo {
     hasNextPage: Boolean!
     hasPreviousPage: Boolean!
     showing:Int!
     total:Int!
-    after:Cursor
+    after:String
   }
 
 
@@ -32,7 +32,8 @@ type CharacterEdge {
 
   type Query {
 
-   
+    characters(first: Int!, after: String): CharacterConnection!
+    charactersByFilter(name: String , level:String): [Character!] 
     levels: [String]
      }
 
